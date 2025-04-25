@@ -25,10 +25,20 @@ $(".btn").on( "click", function() {
     var userChosenColour = $(this).attr("id");
     userClickedPattern.push(userChosenColour);
     playSound(userChosenColour);
+    animatePress(userChosenColour);
     console.log(userChosenColour);
 } );
 
 function playSound(name) {
     var audio = new Audio(`./sounds/${name}.mp3`);
     audio.play();
+}
+
+function animatePress(currentColour) {
+    var colour = currentColour;
+    $(`#${colour}`).addClass("pressed")
+    .delay(100)
+    .queue(function(){
+        $(this).removeClass('pressed');
+    })
 }
